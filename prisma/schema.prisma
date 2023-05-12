@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["jsonProtocol"]
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl         = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
+}
+
+model ChordSet {
+  id     Int     @id @default(autoincrement())
+  number Int @unique
+  genre  String
+  chords Chord[]
+}
+
+model Chord {
+  id    Int    @id @default(autoincrement())
+  name  String
+  notes Int[]
+
+  ChordSet   ChordSet? @relation(fields: [chordSetId], references: [id])
+  chordSetId Int?
+}
