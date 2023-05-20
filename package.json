@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
+    "db:studio": "dotenv -e .env.local -- npx prisma studio",
     "db:seed": "dotenv -e .env.local -- npx prisma db seed"
   },
   "dependencies": {

@@ -9,6 +9,10 @@ describe("noteNumber", () => {
     expect(noteNumber("F#3")).toEqual(66);
   });
 
+  it("converts Ab above middle C to 68", () => {
+    expect(noteNumber("Ab3")).toEqual(68);
+  });
+
   it("converts bottom C to 0", () => {
     expect(noteNumber("C-2")).toEqual(0);
   });
